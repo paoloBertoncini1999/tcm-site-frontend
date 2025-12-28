@@ -1,0 +1,132 @@
+---
+import Carosello from "@components/Carosello";
+import { Debug } from "astro/components";
+import { Col, Row } from "react-bootstrap";
+import Layout from "src/layouts/Layout.astro";
+import fetchApi from "src/lib/strapi";
+import Forecasts from "../components/Forecasts.astro";
+import "../style/photogallery.scss";
+import HomeEventi from "./home_eventi.astro";
+import HomeNews from "./home_news.astro";
+
+const articles = " variabile articoli";
+
+console.log(articles);
+
+
+
+
+const data = await fetchApi({
+  endpoint: 'eventis',  // Il tuo endpoint
+});
+const img_array_carousel=[
+  "../../public/img/home/carosello/slider1.jpg",
+  "../../public/img/home/carosello/copyright-immagini-generate-ai12.jpg",
+  "https://picsum.photos/1140/300?random=2",
+  "https://picsum.photos/1140/300?random=3",
+  "https://picsum.photos/1140/300?random=4",
+]
+
+// const myUrl = Astro.url.pathname;
+const myUrl = Astro.url.pathname.split("/").filter(Boolean);
+// const myUrl = Astro.url.pathname.split("/").filter(Boolean).pop();
+
+---
+
+<Debug log={myUrl}></Debug>
+<Layout title="Home Page." , componenti={["carosello", "eventi", "news"]}>
+
+  <div class="mb-4">
+    <Carosello img_array={img_array_carousel} url={myUrl} client:load></Carosello>
+  </div>
+  <Row>
+      <Col lg={6}>
+        <HomeNews/>
+      </Col>
+      <Col lg={6}>
+        <HomeEventi/>
+      </Col>
+  </Row>
+  <!-- <Row>
+
+    <Col lg={6} sm={12}>
+      <h2>News</h2>
+      <Row>
+        <Col lg={6} sm={12}>
+          <CardTcm />
+        </Col>
+        <Col lg={6} sm={12}>
+          <CardTcm />
+        </Col>
+      </Row>
+    </Col>
+
+    <Col lg={6} sm={12}>
+      <h2>Eventi</h2>
+      <Row>
+        <Col lg={6} sm={12}>
+          <CardTcm />
+        </Col>
+        <Col lg={6} sm={12}>
+          <CardTcm />
+        </Col>
+        <Col lg={6} sm={12}>
+          <CardTcm />
+        </Col>
+        <Col lg={6} sm={12}>
+          <CardTcm />
+        </Col>
+      </Row>
+    </Col>
+  </Row> -->
+
+
+
+  <Row>
+    <Col lg={6} sm={12}>
+      <iframe
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTennisClubMontecchioAsd&tabs=timeline&width=340&height=271&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+        style="border:none;overflow:hidden"
+        width="100%"
+        scrolling="no"
+        frameborder="0"
+        allowfullscreen="true"
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      ></iframe>
+    </Col>
+    <Col lg={6} sm={12}>
+      <Forecasts />
+    </Col>
+  </Row>
+
+  <!-- <Row>
+		<Col lg={6} sm={12}>
+			<iframe
+				src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTennisClubMontecchioAsd&tabs=timeline&width=340&height=271&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+				style="border:none;overflow:hidden"
+				width="1500"
+				scrolling="no"
+				frameborder="0"
+				allowfullscreen="true"
+				allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+			></iframe>
+		</Col>
+		<Col lg={6} sm={12}>
+
+		</Col> -->
+</Layout>
+
+<!-- <iframe
+		src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FTennisClubMontecchioAsd&tabs=timeline&width=340&height=271&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+		width="680"
+		height="271"
+		style="border:none;overflow:hidden"
+		scrolling="no"
+		frameborder="0"
+		allowfullscreen="true"
+		allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+	></iframe> -->
+
+<!-- <Debug log={articles} />
+<Debug log={data} />
+<Debug log={"articoli 2:" + articles2} /> -->

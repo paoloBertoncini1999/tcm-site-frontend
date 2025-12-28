@@ -1,0 +1,38 @@
+{
+  "name": "shining-satellite",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^3.0.9",
+    "@astrojs/renderer-svelte": "^0.5.2",
+    "@astrojs/renderer-vue": "^0.4.0",
+    "@astrojs/sitemap": "^3.1.6",
+    "@popperjs/core": "^2.11.8",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "astro": "^4.15.7",
+    "astro-bootstrap": "^0.6.2",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "dayjs": "^1.11.13",
+    "pdfjs-dist": "^4.10.38",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.0",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^8.0.6",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "shiki": "^1.17.7"
+  },
+  "devDependencies": {
+    "sass": "^1.77.7"
+  }
+}

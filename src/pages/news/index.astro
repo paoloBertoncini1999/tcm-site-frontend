@@ -1,0 +1,57 @@
+---
+// import { useState } from "react";
+import Debug from "astro/components/Debug.astro";
+import { Col, Container, Row } from "react-bootstrap";
+import fetchApi from "src/lib/strapi";
+import Layout from "../../layouts/Layout.astro";
+// import "../style/index.css";
+import CardTcm from "@components/Card_tcm.astro";
+
+const myUrl = Astro.url.pathname.split("/").filter(Boolean).pop();
+
+const api_news = await fetchApi({
+  endpoint: 'newses?populate=*&sort=Data:desc',  // Il tuo endpoint
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+
+---
+
+<!-- <Debug log={api_news}></Debug> -->
+<Layout title="News">
+    <div class="page-news">
+
+        <div
+            class="d-flex justify-content-center text-uppercase"
+            id="div_titolo"
+        >
+            <h2>news</h2>
+        </div>
+
+        <Container>
+                {api_news?.map((news,index)=>(
+                    index>0? null: 
+                    <a href={`/news/${news?.attributes?.Titolo.replace(/\s+/g, '').toLowerCase()}`}>
+                        <div class="pb-3 mb-3" style={{borderBottom:"solid 1px #1b639f"}}>
+                            <CardTcm titolo={news?.attributes?.Titolo} last={index=="0"?"true":"false"} tipo={news?.attributes?.Tipo} />
+                            {/* <Debug log={news?.attributes?.Tipo}></Debug> */}
+                        </div>
+                    </a>
+                    <div  class="  row g-3">
+                        {api_news?.map((news,index)=>(
+                            index===0 ? null : 
+                            (
+                                <a href={`/news/${news?.attributes?.Titolo.replace(/\s+/g, '').toLowerCase()}`}>
+                                    <div class="col-sm-12 col-md-4 d-flex justify-content-center"  >
+                                        <CardTcm titolo={news?.attributes?.Titolo}  />
+                                    </div>
+                                </a>
+                            )
+                        ))}
+                    </div>
+                ))}
+        </Container>
+    </div>
+</Layout>
+<!-- <Debug log={api_news} />
+<Debug log={myUrl} />  -->

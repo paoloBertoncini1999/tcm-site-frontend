@@ -1,0 +1,36 @@
+---
+// src/components/PdfViewer.astro
+import { useEffect, useRef, useState } from "react";
+
+
+// Imposta il worker per PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.10.111/pdf.worker.min.js`;
+
+const { pdfUrl } = Astro.props;
+const [pdf, setPdf] = useState(null);
+const [pageNum, setPageNum] = useState(1);
+const canvasRef = useRef(null);
+
+useEffect(() => {
+    pdfjsLib.getDocument(pdfUrl).promise.then(setPdf);
+}, [pdfUrl]);
+
+useEffect(() => {
+    if (!pdf) return;
+    pdf.getPage(pageNum).then((page) => {
+        const scale = 1.5;
+        const viewport = page.getViewport({ scale: scale });
+        const canvas = canvasRef.current;
+        const context = canvas.getContext("2d");
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        page.render({ canvasContext: context, viewport });
+    });
+}, [pdf, pageNum]);
+
+---
+<div>
+    <canvas ref={canvasRef}></canvas>
+    <!-- <button onClick={() => setPageNum((prev) => Math.max(prev - 1, 1))}>Pagina Precedente</button>
+    <button onClick={() => setPageNum((prev) => Math.min(prev + 1, pdf?.numPages))}>Pagina Successiva</button> -->
+</div>

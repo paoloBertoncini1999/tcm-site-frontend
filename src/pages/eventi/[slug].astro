@@ -1,0 +1,63 @@
+---
+import MarkdownRenderer from "@components/MarkdownRenderer";
+import Debug from "astro/components/Debug.astro";
+import Layout from "src/layouts/Layout.astro";
+import fetchApi from "src/lib/strapi";
+
+// const baseUrl = process?.env?.NE;
+
+export async function getStaticPaths() {
+  // 1️⃣ Recupera la lista di pagine disponibili
+  const response = await fetchApi({
+    // endpoint: 'paginas?filters[Visibile][Visibile][$eq]=Si&populate=*,Campi.Immagini,',  // Il tuo endpoint
+    // endpoint: 'paginas?filters[Visibile][Visibile][$eq]=Si&populate[Documenti][populate]=*&populate[Immagine_apertura_e_anteprima][populate]=*&populate[Campi][populate][Immagini][populate]=*',
+    endpoint: 'eventis?populate=*',  // Il tuo endpoint
+    wrappedByKey: 'data', // the key to unwrap the response
+  });
+
+  // console.log("Risposta API:", response); // 🔍 Verifica la struttura della risposta
+
+
+
+    const paths = response?.map((pagina) => ({
+      params: { slug: pagina.attributes.Titolo.replace(/\s+/g, '').toLowerCase() },
+      props: { 
+        titolo: pagina?.attributes?.Titolo,
+        sequenza: pagina?.attributes?.Sequenza,
+        corpo_della_pagina: pagina?.attributes?.Corpo_della_pagina,
+        documenti: pagina?.attributes?.Documenti?.data,
+        visibile: pagina?.attributes?.Visibile,
+        immagine_apertura_e_anteprima: pagina?.attributes?.Immagine_apertura_e_anteprima,
+        campi: pagina?.attributes?.Campi,
+      },
+    })) || [];
+
+  console.log("Paths prova:", paths);
+  return paths
+
+
+}
+
+  const {titolo, corpo_della_pagina} = Astro.props; // Ottieni lo slug dalla URL
+
+
+ 
+
+---
+
+<!-- <Debug log={Astro.props}/>  -->
+<Debug log={corpo_della_pagina}/>
+
+
+
+<Layout title="Welcome to Astro.">
+
+  <h2> {titolo}</h2>
+    <MarkdownRenderer content={corpo_della_pagina} />
+    
+</Layout>
+
+<!-- <p> prova slug {slug} </p>
+<p> prova titolo {titolo} </p>
+<p> prova corpo della pagina {corpo_della_pagina} </p>
+<p> prova visibile {visibile} </p> -->

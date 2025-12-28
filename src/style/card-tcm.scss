@@ -1,0 +1,46 @@
+$color-blue-hex: #255e8d;
+$color-blue-rgb: 37, 95, 141;
+$color-red-hex: #b1272e;
+$color-red-rgb: 37, 95, 141;
+// $img_sfondo: "/img/sfondo_titolo_pagine/sfondo_titolo_campi.png";
+$img_sfondo: "/img/sfondo_titolo_pagine/sfondo_titolo_campi2.png";
+// $img_sfondo: "/img/sfondo_titolo_pagine/sfondo_titolo_campi3.png";
+
+.page-card {
+    & .card {
+        max-width: 18rem;
+    }
+
+    & .card.last {
+        min-width: 100%;
+    }
+    & .card-img-last {
+        padding: 5px;
+        padding-right: 10px;
+        max-width: 300px;
+        max-height: 300px
+    }
+
+    & .small-last {
+        color: red;
+    }
+}
+
+@media (min-width:768px) {
+    .page-card {
+        & .card.last {
+            max-width: 65%;
+            min-width: auto;
+        }
+
+        & .div-img {
+
+            margin: 5px;
+            margin-right: 0px;
+            border-right: 1px solid;
+        }
+
+    
+        
+    }
+}

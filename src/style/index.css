@@ -1,0 +1,26 @@
+@import "../style/footer.scss";
+@import "../style/navbar.scss";
+@import "../style/news.scss";
+@import "../style/eventi.scss";
+@import "../style/campi.scss";
+@import "../style/card-tcm.scss";
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.img-carousel {
+    border-radius: 20px !important;
+    object-fit: cover;
+}
+
+
+._2p3a {
+    width: 100% !important;
+}
+
+.bi {
+    font-size: 24px !important;
+    color: black!important;
+    display: inline-block!important;
+    height: 20px!important;
+    width: 20px!important;
+  }
+  

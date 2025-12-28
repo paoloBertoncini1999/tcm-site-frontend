@@ -1,0 +1,21 @@
+$color-blue-hex: #255e8d;
+$color-blue-rgb: 37, 95, 141;
+$color-red-hex: #b1272e;
+$color-red-rgb: 37, 95, 141;
+// $img_sfondo: "/img/sfondo_titolo_pagine/sfondo_titolo_campi.png";
+$img_sfondo: "/img/sfondo_titolo_pagine/sfondo_titolo_campi2.png";
+// $img_sfondo: "/img/sfondo_titolo_pagine/sfondo_titolo_campi3.png";
+
+.page-campi {
+    & #div_titolo {
+        border-radius: 20px;
+        background-image: url($img_sfondo);
+        // background-color: rgba(0, 0, 0, 1.0);
+        background-repeat: no-repeat;
+        background-size: cover;
+        // opacity: 0.7;
+        padding: 20px;
+        margin-block-end: 20px;
+
+    }
+}

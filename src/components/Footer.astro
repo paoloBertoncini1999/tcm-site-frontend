@@ -1,0 +1,141 @@
+---
+// import { Debug } from "astro:components";
+// import { fetchContent } from "src/axios/axios";
+import fetchApi from "src/lib/strapi";
+import "../style/footer.scss";
+
+
+
+const api_footer = await fetchApi({
+  endpoint: 'informazioni-societa',  // Il tuo endpoint
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+
+---
+
+<div class="container-fluid">
+  <div class="row footer text-white">
+    <!-- inizio primo div  -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 text-start">
+      <h5 class="text-uppercase">informazioni societa</h5>
+      <p><b>{api_footer?.attributes?.tipo_organizzazione}</b></p>
+      <p><b>Indirizzo: </b>{api_footer?.attributes?.indirizzo}, {api_footer?.attributes?.civico}</p>
+      <p>
+        <b> Città:</b>
+          {api_footer?.attributes?.paese}
+      </p>
+      <p>
+        <b> Cap:</b>
+          {api_footer?.attributes?.cap}
+      </p>
+      <p>
+        {api_footer?.attributes?.telefono ? <li>
+          <b> Tel: </b>
+          {api_footer?.attributes?.telefono}
+        </li>:""}
+      </p>
+      <p>
+        <b> P.Iva:</b>
+          {api_footer?.attributes?.partita_iva}
+      </p>
+      <p>
+        <b> Cf:</b>
+          {api_footer?.attributes?.codice_fiscale}
+      </p>
+      
+      <!-- <ul class="">
+        <li>
+          <b> Indrizzo: </b>
+          {api_footer?.attributes?.indirizzo}, {api_footer?.attributes?.civico}
+        </li>
+        <li>
+          <b> Città:</b>
+          {api_footer?.attributes?.paese}
+        </li>
+        <li>
+          <b> Cap:</b>
+          {api_footer?.attributes?.cap}
+        </li>
+        {api_footer?.attributes?.telefono ? <li>
+          <b> Tel: </b>
+          {api_footer?.attributes?.telefono}
+        </li>:""}
+        <li>
+          <b> P.Iva:</b>
+          {api_footer?.attributes?.partita_iva}
+        </li>
+        <li>
+          <b> Cf:</b>
+          {api_footer?.attributes?.codice_fiscale}
+        </li>
+      </ul> -->
+    </div>
+    <!-- fine primo div  -->
+
+    <!-- inizio secondo div  -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 text-start">
+      
+      site map</div>
+    <!-- fine secondo div  -->
+
+    <!-- inizio terzo div  -->
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 text-start">
+      <div>
+        <h5 class="text-uppercase">contatti</h5>
+        <div class="mb-3">
+          <label  class="form-label"
+            ><b>Nome</b></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Nome"
+          />
+        </div>
+        <div class="mb-3">
+          <label  class="form-label">
+            <b>E-mail</b>
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="E-mail"
+          />
+        </div>
+        <div class="mb-3">
+          <label  class="form-label"
+            ><b>Messaggio</b></label
+          >
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            placeholder="Messaggio"></textarea>
+        </div>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckChecked"
+          />
+          <label class="form-check-label" 
+            >Autorizzo il trattamento dei dati personali in base all'art. 13 del
+            D. Lgs. 196/2003 e all'art. 13 GDPR 679/16</label
+          >
+        </div>
+        <button class="btn btn-form" type="submit">Submit form</button>
+      </div>
+    </div>
+    <!-- fine terzo div  -->
+
+    <!-- <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+  </div>
+</div>
+<!-- <Debug log={api_footer} /> -->

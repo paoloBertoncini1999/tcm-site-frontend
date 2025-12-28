@@ -1,0 +1,29 @@
+---
+import fetchApi from "src/lib/strapi";
+import Layout from "../layouts/Layout.astro";
+import "../style/index.css";
+const api_pagina = await fetchApi({
+  endpoint: 'paginas?populate=*',  // Il tuo endpoint
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+const api_squadre = await fetchApi({
+  endpoint: 'squadres?populate[giocatoris][populate]=*',  // Il tuo endpoint
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+---
+
+<Layout title="Welcome to Astro.">
+    <div>
+        <h2>pagina</h2>
+        <!-- <p>{api_associazione?.attributes?.corpo_della_pagina} <i class="bi bi-download"></i></p> -->
+    </div>
+
+
+
+
+</Layout>
+
+<!-- <Debug log={api_squadre} /> -->
+<!-- <Debug log={api_associazione?.attributes} /> -->
+<!-- <Debug log={import.meta.env.STRAPI_URL} /> -->
+<!-- <Debug log={api_associazione?.attributes?.documenti?.data[0].documento?.attributes?.url} /> -->

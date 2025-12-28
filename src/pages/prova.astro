@@ -1,0 +1,61 @@
+---
+import CardTcm from "@components/Card_tcm.astro";
+import CardItem from "@components/CardItem.astro";
+import PdfViewer from "@components/PdfViewer.astro";
+import Debug from "astro/components/Debug.astro";
+import { Col, Row } from "react-bootstrap";
+import Layout from "src/layouts/Layout.astro";
+import fetchApi from "src/lib/strapi";
+
+const api_news = await fetchApi({
+    // endpoint: 'paginas?filters[Visibile][Visibile][$eq]=Si&populate[Campi][populate]=immagini',  // Il tuo endpoint
+    endpoint: 'newses?sort=Data:desc',  // Il tuo endpoint
+    // endpoint: 'paginas?populate=*',  // Il tuo endpoint
+    wrappedByKey: 'data', // the key to unwrap the response
+  });
+---
+<Debug log={api_news}/> 
+<Layout title="Welcome to Astro.">
+
+<!-- <CardItem></CardItem> -->
+
+    <!-- {api_news?.map((news,index) => (
+        index === 0 ? 
+                <CardTcm 
+                    titolo={news?.attributes?.Titolo}
+                    data={news?.attributes?.Data}
+                    contenuto={news?.attributes?.Corpo_della_pagina}
+                    last="true">
+                </CardTcm>
+                <p>ultima news</p>
+              :
+              api_news?.map((news,index) => (
+        index === 0 ? 
+               ""
+              :
+                <div class="d-flex">
+                    <CardTcm titolo={news?.attributes?.Titolo} data={news?.attributes?.Data} contenuto={news?.attributes?.Corpo_della_pagina}></CardTcm>
+                </div>
+    ))
+               
+    ))} -->
+
+ <Row className="d-flex justify-content-center ">
+    {api_news?.map((news,index) => (
+        index === 0 ? 
+                <CardTcm 
+                    titolo={news?.attributes?.Titolo}
+                    data={news?.attributes?.Data}
+                    contenuto={news?.attributes?.Corpo_della_pagina}
+                    last="true">
+                </CardTcm>
+                <p>ultima news</p>
+              :
+                <Col md="4" className="mb-3">
+                    <CardTcm titolo={news?.attributes?.Titolo} data={news?.attributes?.Data} contenuto={news?.attributes?.Corpo_della_pagina}></CardTcm>
+                </Col>
+    ))}
+ </Row>
+
+
+</Layout>

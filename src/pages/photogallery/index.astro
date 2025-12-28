@@ -1,0 +1,48 @@
+---
+// import { useState } from "react";
+import { Container } from "react-bootstrap";
+import fetchApi from "src/lib/strapi";
+import Layout from "../../layouts/Layout.astro";
+// import "../style/index.css";
+import CardTcm from "@components/Card_tcm.astro";
+
+const myUrl = Astro.url.pathname.split("/").filter(Boolean).pop();
+
+const api_photogallery = await fetchApi({
+  endpoint: 'photogalleries',  // Il tuo endpoint
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+
+
+---
+
+<!-- <Debug log={api_photogallery}></Debug> -->
+<Layout title="Photogallery">
+    <div class="page-datails-photogallery">
+
+        <div
+            class="d-flex justify-content-center text-uppercase"
+            id="div_titolo"
+        >
+            <h2>Photogallery</h2>
+        </div>
+    
+
+
+        <!-- <a class="dropdown-item" href={`/pagine/${pagina.attributes.Titolo.replace(/\s+/g, '').toLowerCase()}`}>{pagina?.attributes?.Titolo}</a> -->
+
+
+        <Container>
+            <div  class="  row g-3">
+                {api_photogallery?.map((photogallery,index)=>(
+                    <a href={`/photogallery/${photogallery?.attributes?.Titolo.replace(/\s+/g, '').toLowerCase()}`}>
+                        <div class="col-sm-12 col-md-4 d-flex justify-content-center"  >
+                            <CardTcm titolo={photogallery?.attributes?.Titolo}  />
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </Container>
+    </div>
+</Layout>
+

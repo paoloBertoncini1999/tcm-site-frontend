@@ -1,0 +1,60 @@
+---
+import fetchApi from "src/lib/strapi";
+import Layout from "../layouts/Layout.astro";
+
+import MarkdownRenderer from "@components/MarkdownRenderer";
+import "../style/index.css";
+const api_associazione = await fetchApi({
+  endpoint: 'associazione?populate=documenti',  // Il tuo endpoint
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+---
+
+<Layout title="Welcome to Astro.">
+    <div>
+      
+        <!-- {api_associazione?.attributes?.corpo_della_pagina} -->
+        <h2>{api_associazione?.attributes?.titolo}</h2>
+        <!-- <p>{api_associazione?.attributes?.corpo_della_pagina} <i class="bi bi-download"></i></p> -->
+        <MarkdownRenderer content={api_associazione?.attributes?.corpo_della_pagina} />
+      </div>
+      <!-- div documenti -->
+    <div>
+    {api_associazione?.attributes?.documenti?.data.map((documento) => (
+      <div>
+        {/* <Debug log={`http://127.0.0.1:1337${documento?.attributes?.url}`} />
+        <iframe
+          src={`http://localhost:1337${documento?.attributes?.url}`}
+          style="width:718px; height:700px;"
+          frameborder="0"
+        ></iframe> */}
+<div>
+  
+  <a href={`http://127.0.0.1:1337${documento?.attributes?.url}`} target="_blank" rel="noopener noreferrer">
+    {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+</svg>{documento?.attributes?.name} */}
+    <i class="bi bi-download"></i>{documento?.attributes?.name}
+        </a>
+</div>
+      </div>
+    ))}
+  </div>
+    <!-- <div>
+        {api_associazione?.attributes?.documenti?.data.map((documento)=>{
+            return(
+            <iframe src={`${import.meta.env.STRAPI_URL}${documento?.attributes?.url}`} style="width:718px; height:700px;" frameborder="0"></iframe>
+            // <iframe src={import.meta.env.STRAPI_URL+documento?.attributes?.url} style="width:718px; height:700px;" frameborder="0"></iframe>
+            )
+        }
+    )}
+    </div>
+    <iframe src={"http://127.0.0.1:1337/"+api_associazione?.attributes?.documenti?.data[0].documento?.attributes?.url} style="width:718px; height:700px;" frameborder="0"></iframe>
+ -->
+
+</Layout>
+<!-- <Debug log={api_associazione} />
+<Debug log={api_associazione?.attributes} />
+<Debug log={import.meta.env.STRAPI_URL} /> -->
+

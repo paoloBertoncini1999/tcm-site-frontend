@@ -1,0 +1,70 @@
+$color-blue-hex: #255e8d;
+$color-blue-rgb: 37, 95, 141;
+$color-red-hex: #b1272e;
+$color-red-rgb: 37, 95, 141;
+$img_sfondo: "/img/sfondo_titolo_pagine/sfondo_titolo_eventi.jpg";
+
+.page-eventi {
+    & #div_titolo {
+        border-radius: 20px;
+        background-image: url($img_sfondo);
+        // background-color: rgba(0, 0, 0, 0.7);
+        background-repeat: no-repeat;
+        background-size: cover;
+        // opacity: 0.7;
+        padding: 20px;
+        margin-block-end: 20px;
+        position: relative;
+        color: white;
+        overflow: hidden; /* Assicurati che l'overlay non esca dal bordo arrotondato */
+        & h2{
+            z-index: 1;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Sovrapposizione trasparente */
+            border-radius: 20px; /* Curvatura identica al div */
+            z-index: 0; /* Posiziona l'overlay dietro al contenuto */
+            width: 100%;  /* Forza una larghezza */
+            height: 100%; /* Forza un'altezza */
+          }
+    }
+     & a{
+        all: unset;
+    }
+}
+
+// .page-eventi {
+//     #div_titolo {
+//       border-radius: 20px;
+//       background-image: url('path/to/your/image.jpg'); /* Percorso dell'immagine */
+//       background-repeat: no-repeat;
+//       background-size: cover;
+//       padding: 20px;
+//       margin-block-end: 20px;
+//       position: relative;
+//       color: white; /* Colore del testo sopra l'immagine */
+//       overflow: hidden; /* Assicurati che l'overlay non esca dal bordo arrotondato */
+  
+//       // Pseudo-elemento ::after
+//       &::after {
+//         content: "";
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         right: 0;
+//         bottom: 0;
+//         background-color: rgba(0, 0, 0, 0.6); /* Sovrapposizione trasparente */
+//         border-radius: 20px; /* Curvatura identica al div */
+//         z-index: -1; /* Posiziona l'overlay dietro al contenuto */
+//         width: 100%;  /* Forza una larghezza */
+//         height: 100%; /* Forza un'altezza */
+//       }
+//     }
+//   }
+  

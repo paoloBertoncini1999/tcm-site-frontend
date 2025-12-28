@@ -1,0 +1,49 @@
+---
+import dayjs from "dayjs";
+import "dayjs/locale/it"; // Imposta la lingua italiana
+import "../../node_modules/bootstrap/scss/bootstrap.scss";
+// import "../style/index.css";
+import MarkdownRenderer from "./MarkdownRenderer";
+
+dayjs.locale("it");
+
+const { href, title, body, titolo, data, contenuto, addClass, last="", tipo} = Astro.props;
+
+const formatDate = (date) => {
+  return dayjs(date).format("DD MMMM YYYY");
+};
+
+console.log("contenuto", contenuto); // Output: "7 gennaio 2025"
+console.log("formato", formatDate(data)); // Output: "7 gennaio 2025"
+const formatoData = formatDate(data)
+
+console.log("data 1", data);
+const data2 = new Date(data)
+console.log("data 2", data2);
+---
+
+<!-- <Debug log={href}/> -->
+<div class="page-card " >
+	<div class=`card ${last==="true" ? "last d-flex flex-row":""}` >
+		<div class=`${last==="true" ? "div-img":""}`>
+			<img class="img-fluid" height="300px" width="300px" src="/public/img/prova/layout eventi.png" class=`card-img-top img-fluid ${last==="true" ? "card-img-last":""}`  alt=https://placehold.co/400x400 >
+		</div>
+		<div class="card-body">
+
+			<h5 class="card-title" >{titolo}</h5>
+			<!-- <h5 class="card-title" style={{minHeight: "2.5rem"}}>{titolo}</h5> -->
+			<small class="card-text fw-lighter">{formatoData}</small>
+			<br>
+			{ last === "true" ?
+					<small class="card-text small-last fw-bold text-uppercase" >{tipo==="Evento"?`ultimo ${tipo}`:`ultima ${tipo}`}!!</small>
+				:
+				""
+			}
+				<div class="card-text text-truncate text-nowrap"  style="max-width: 100px; text-overflow: ellipsis;"></p>
+					<MarkdownRenderer content={contenuto}/>
+				</div>
+			<a href={href} class="btn btn-primary">cliccca qui</a>
+		</div>
+	</div>
+</div>
+

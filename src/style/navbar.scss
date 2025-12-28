@@ -1,0 +1,130 @@
+$color-blue-hex: #255e8d;
+$color-blue-rgb: 37, 95, 141;
+$color-red-hex: #b1272e;
+$color-red-rgb: 37, 95, 141;
+
+
+nav {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background: rgba($color: $color-red-hex, $alpha: .9);
+  padding: 0 !important;
+
+
+  & .nav-item .submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+  }
+
+  & .dropdown-menu>li:hover>.submenu {
+    display: block;
+  }
+
+  & ul.dropdown-menu {
+    background-color: $color-red-hex;
+
+    & .dropdown-menu .show {
+      background-color: #255e8d;
+    }
+
+    & li a:hover {
+      background: rgba($color: $color-blue-hex, $alpha: .9);
+      border-radius: 20px;
+    }
+
+    & li a:active {
+      background: rgba($color: $color-blue-hex, $alpha: .9) !important;
+      border-radius: 20px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    & li .active {
+      background: rgba($color: $color-blue-hex, $alpha: .9);
+      border-radius: 20px;
+    }
+  }
+
+  & li:hover {
+    background: rgba($color: $color-blue-hex, $alpha: .9);
+    // background: rgb($color: $color-blue-hex, );
+    border-radius: 20px;
+
+  }
+
+  & .active:not(.navbar-brand) {
+    background: rgba($color: $color-blue-hex, $alpha: .9);
+    border-radius: 20px;
+  }
+
+  .div-sfondo-logo-dk {
+    background-color: #fff;
+    padding-block: 5px;
+    padding-inline: 25px;
+    border-end-start-radius: 45px;
+    border-end-end-radius: 45px;
+
+  }
+
+}
+
+
+
+.navbar-brand {
+  margin-right: 0px !important;
+}
+
+#logo-mobile {
+  display: none;
+}
+
+#logo {
+  height: 50px;
+  border-radius: 5px;
+
+}
+
+@media (max-width:912px) {
+  nav {
+    & div:first-of-type {
+      padding-inline-start: 0px;
+
+      & a.navbar-toggler {
+        padding-inline-start: 24px;
+        background-color: white;
+        border: 0px;
+        border-radius: 20px;
+      }
+
+      & .nav-item .submenu {
+        display: none;
+        position: absolute;
+        left: 100%;
+        top: -7px;
+      }
+
+      & .dropdown-menu>li:hover>.submenu {
+        display: block;
+      }
+
+    }
+
+
+  }
+
+  ul {
+    text-align: center;
+
+    li {
+      text-align: center;
+
+    }
+  }
+
+  .div-sfondo-logo-dk {
+    display: none;
+  }
+}

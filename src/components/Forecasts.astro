@@ -1,0 +1,63 @@
+---
+// const [risultato, setRisultato] = useState();
+// const [citta, setCitta] = useState("alzano lombardo");
+
+// console.log(citta);
+// useEffect(() => {
+//     fetch(
+//         `http://api.openweathermap.org/data/2.5/weather?appid=e0513352abad7c8d7ed06aae7dc40ff5&q=${citta}&lang=it&units=metric`
+//     ).then((res) => res.json());
+//     .then((res) => setRisultato(res));
+// }, []);
+
+// console.log("use previsioni: " + risultato);
+{
+    // console.log(risultato);
+}
+---
+
+<div class="previsioni">
+    <h5>Previsioni Meteo Campi</h5>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> Situazione meteo a:</th>
+                <th>
+                    <!-- {risultato?.name} -->
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th> Temperatura attuale:</th>
+                <th>
+                    <!-- {risultato?.main?.temp} -->
+                </th>
+            </tr>
+            <tr>
+                <th> Temperatura massima:</th>
+                <th>
+                    <!-- {risultato?.main?.temp_max} -->
+                </th>
+            </tr>
+            <tr>
+                <th> Temperatura minima:</th>
+                <th>
+                    <!-- {risultato?.main?.temp_min} -->
+                </th>
+            </tr>
+            <tr>
+                <th> Situazione attuale:</th>
+                <th>
+                    <!-- {risultato?.weather[0]?.description} -->
+                </th>
+            </tr>
+            <tr>
+                <th> Vento:</th>
+                <th>
+                    <!-- {risultato?.wind?.speed} -->
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>

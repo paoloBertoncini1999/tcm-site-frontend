@@ -1,0 +1,6 @@
+.page-photogallery {}
+.page-photogallery-details {
+    & .modalTcm {
+        & button { all: unset;}
+    }
+}

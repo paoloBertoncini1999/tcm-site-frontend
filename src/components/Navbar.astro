@@ -1,0 +1,130 @@
+---
+// import "@popperjs/core/dist/umd/popper";
+import fetchApi from "src/lib/strapi";
+// import "../style/navbar.scss";
+const api_pagine = await fetchApi({
+  endpoint: 'paginas?filters[Visibile][Visibile][$eq]=Si&populate=*',  // Il tuo endpoint
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+const api_albo_d_oro = await fetchApi({
+  endpoint: 'vincitoris',  // Il tuo endpoint
+  wrappedByKey: 'data', // the key to unwrap the response
+});
+---
+
+<!-- versione desktop -->
+ <>
+<nav class="navbar navbar-expand-lg bg-navbar text-uppercase" id="bg-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand navbar-toggler" href="/">
+      <img class="img-fluid" src="/img/logo/logo-2e3d0e3b.png" alt="" width="100" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse justify-content-between"
+      id="navbarSupportedContent"
+    >
+      <!-- inizio primo div  -->
+      <div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              società
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {api_pagine?.map((pagina,index) => {
+              return (
+                  <li>
+                    <a class="dropdown-item" href={`/pagine/${pagina.attributes.Titolo.replace(/\s+/g, '').toLowerCase()}`}>{pagina?.attributes?.Titolo}</a>
+                    {/* <Debug log={`/pagine/${pagina.attributes.Titolo.replace(/\s+/g, '').toLowerCase()}`}></Debug> */}
+                    {/* <a class="dropdown-item" href={`/associazione`}>{pagina?.attributes?.Titolo}</a> */}
+                  </li>
+              );
+            })}
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/news">news</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/eventi">eventi</a>
+          </li>
+        </ul>
+      </div>
+      <!-- fine primo div  -->
+
+      <!-- inizio secondo div  -->
+      <div class="div-sfondo-logo-dk">
+        <a class="navbar-brand" href="/">
+          <img class="img-fluid" src="/img/logo/logo-2e3d0e3b.png" alt="" width="100" />
+        </a>
+      </div>
+      <!-- fine secondo div  -->
+
+      <!-- inizio terzo div  -->
+      <div>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              agonistica
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/squadre">squadre</a></li>
+              <li><a class="dropdown-item" href="/risultati">risultati</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/photogallery"
+              >photogallery</a
+            >
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link" aria-current="page" href="#">accedi</a> -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-file-person"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M12 1a1 1 0 0 1 1 1v10.755S12 11 8 11s-5 1.755-5 1.755V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+              ></path>
+              <path d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
+            </svg>
+          </li>
+        </ul>
+      </div>
+      <!-- fine terzo div  -->
+    </div>
+  </div>
+</nav>
+
+<!-- <NavbaReact client:load></NavbaReact> -->
+<!-- <Debug log={api_pagine}/>  -->
+ <>
