@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Carosello2 from './Carosello2';
 
 export default function ModalTcm(props) {
   const [show, setShow] = useState(false);
@@ -10,7 +11,7 @@ export default function ModalTcm(props) {
 
 
   console.log("✅ props modalTcm:", JSON.stringify(props, null, 2));
-  // console.log("✅ props modalTcm:", JSON.stringify(props));
+
 
 
   // const props= titolo_modale, img_url, img_seq, img_array, url
@@ -27,10 +28,8 @@ export default function ModalTcm(props) {
         </Modal.Header>
         <Modal.Body>
           <div className='d-flex justify-content-center'>
-            <Carosello img_url={props.img_url} img_seq={props.img_seq} img_array={props.img_array} url={props.url}></Carosello>: 
-
+            <Carosello2 prova="prova a cazzo" pageUrl={props.pageUrl} img_url={props.img_url} img_seq={props.img_seq} img_array={props.img_array} client:load></Carosello2>: 
             {/* {props?.url=="campi"?
-            <Carosello img_url={props.img_url} img_seq={props.img_seq} img_array={props.img_array} url={props.url}></Carosello>: 
             // <p> sono condizione verificata di campi </p>:
             <p> sono condizione non verificata di campi </p>
             } */}

@@ -33,7 +33,7 @@ console.log("✅ props accordion:", JSON.stringify(props, null, 2));
                         {props?.campo.Immagini.data?.map((immagini,index)=>(
                             <Col md="6" lg="6" className='d-flex justify-content-center'>
                                 {/* {props?.campo.Immagini.data?.length} */}
-                                <ModalTcm img_url={immagini?.attributes?.url} url={props?.url} img_seq={index} img_array={props?.campo} client:load></ModalTcm>
+                                <ModalTcm img_url={immagini?.attributes?.url} pageUrl={props?.url} img_seq={index} img_array={props?.campo} client:load></ModalTcm>
                                 {/* <ModalTcm img_url={immagini?.attributes?.url} url={props?.myurl} client:load></ModalTcm> */}
                                 {/* <ModalTcm img_url={immagini?.attributes?.url} img_array={props?.campo.Immagini.data}client:load></ModalTcm> */}
                             </Col>
