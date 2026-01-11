@@ -1,9 +1,8 @@
 ---
-import Carosello from "@components/Carosello";
-import { Debug } from "astro/components";
 import { Col, Row } from "react-bootstrap";
 import Layout from "src/layouts/Layout.astro";
 import fetchApi from "src/lib/strapi";
+import Carosello2 from "../components/Carosello2";
 import Forecasts from "../components/Forecasts.astro";
 import "../style/photogallery.scss";
 import HomeEventi from "./home_eventi.astro";
@@ -27,17 +26,16 @@ const img_array_carousel=[
   "https://picsum.photos/1140/300?random=4",
 ]
 
-// const myUrl = Astro.url.pathname;
-const myUrl = Astro.url.pathname.split("/").filter(Boolean);
-// const myUrl = Astro.url.pathname.split("/").filter(Boolean).pop();
 
+// const myUrl = Astro.url.pathname.split("/").filter(Boolean);
+const myUrl = "home"
 ---
 
-<Debug log={myUrl}></Debug>
-<Layout title="Home Page." , componenti={["carosello", "eventi", "news"]}>
+<!-- <Debug log={myUrl}></Debug> -->
+<Layout title="Home Page" , componenti={["carosello", "eventi", "news"]}>
 
   <div class="mb-4">
-    <Carosello img_array={img_array_carousel} url={myUrl} client:load></Carosello>
+    <Carosello2 pageUrl={myUrl} img_seq="1" img_array={img_array_carousel} client:load></Carosello2>
   </div>
   <Row>
       <Col lg={6}>

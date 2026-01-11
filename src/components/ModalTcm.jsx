@@ -10,7 +10,7 @@ export default function ModalTcm(props) {
   const handleShow = () => setShow(true);
 
 
-  console.log("✅ props modalTcm:", JSON.stringify(props, null, 2));
+  console.log("✅ props img modalTcm:", JSON.stringify(props?.img_array, null, 2));
 
 
 
@@ -28,11 +28,11 @@ export default function ModalTcm(props) {
         </Modal.Header>
         <Modal.Body>
           <div className='d-flex justify-content-center'>
-            <Carosello2 prova="prova a cazzo" pageUrl={props.pageUrl} img_url={props.img_url} img_seq={props.img_seq} img_array={props.img_array} client:load></Carosello2>: 
-            {/* {props?.url=="campi"?
-            // <p> sono condizione verificata di campi </p>:
-            <p> sono condizione non verificata di campi </p>
-            } */}
+            {props.img_array?.length===1?
+<img class="img-fluid img-thumbnail" height={800} style={{ maxHeight: '800px' }} src={`http://127.0.0.1:1337${props?.img_array[0]?.attributes?.url}`} alt="immagine di prova"/> 
+            :<Carosello2 pageUrl={props.pageUrl} img_seq={props.img_seq} img_array={props.img_array} client:load></Carosello2>
+            }
+            
           </div>
         </Modal.Body>
         {/* <Modal.Footer>

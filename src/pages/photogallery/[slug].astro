@@ -1,5 +1,4 @@
 ---
-import { Debug } from "astro:components";
 import { Col, Row } from "react-bootstrap";
 import Layout from "src/layouts/Layout.astro";
 import fetchApi from "src/lib/strapi";
@@ -38,34 +37,15 @@ export async function getStaticPaths() {
 // const myUrl = Astro.url.pathname;
 // const myUrl = Astro.url.pathname.at(2);
 const myUrl = Astro.url.pathname.split("/").filter(Boolean);
-
-
 ---
-
-
-<!-- <Debug log={img_photogallery}></Debug> -->
-
 <!-- <Debug log={myUrl}></Debug> -->
 <Layout title="Welcome to Astro.">
   <div class="page-photogallery-details">
     <h2> {titolo}</h2>
-    <!-- <img class="img-fluid img-thumbnail" height={100} src={`http://127.0.0.1:1337${immagine_anteprima?.data[0]?.attributes?.url}`} alt="immagine di prova"/>
-    <p>immagine di copertina</p>
-    <br> <br> -->
     <Row className="g-4">
-      <!-- <Debug log={img_photogallery}></Debug>  -->
       {img_photogallery.map((img) => (
-      //  { const img2=[
-      //     img_attuale: img?.Immagine?.data?.attributes?.url
-      //   ]}
         <Col lg="4">
-          {/* <Debug log={`http://127.0.0.1:1337/${img?.Sequenza}`}></Debug> 
-          <Debug log={`http://127.0.0.1:1337/${img?.Immagine?.data?.attributes?.url}`}></Debug>  */}
-          <Debug log={myUrl}></Debug> 
           <ModalTcm titolo_modale={titolo} pageUrl={myUrl[0]} img_url={img?.Immagine?.data?.attributes?.url} img_seq={img?.Sequenza} img_array={img_photogallery} client:load></ModalTcm>
-          {/* <ModalTcm img_url={img?.Immagine?.data?.attributes?.url} client:load></ModalTcm> */}
-          {/* <Carosello img_url={img?.Immagine?.data?.attributes?.url} client:load></Carosello> */}
-          {/* <img class="img-fluid img-thumbnail" height={200}  src={`http://127.0.0.1:1337${img?.Immagine?.data?.attributes?.url}`} alt="immagine di prova"/> */}
         </Col>
       ))}
     </Row>

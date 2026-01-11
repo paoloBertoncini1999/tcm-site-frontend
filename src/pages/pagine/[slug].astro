@@ -46,8 +46,8 @@ const myUrl = Astro.url.pathname.split("/").filter(Boolean);
 <!-- <Debug log={corpo_della_pagina}/> -->
 <!-- <Debug log={immagine_apertura_e_anteprima}/>  -->
 <!-- <Debug log={campi}/>  -->
-<!-- <Debug log="pagine slug"/> 
-<Debug log={Astro.props} /> -->
+<!-- <Debug log="pagine slug"/>  -->
+
 
 
 
@@ -77,14 +77,10 @@ const myUrl = Astro.url.pathname.split("/").filter(Boolean);
           <Row className="g-4">
             {campi?.map((campo, index) => (
               <>
-              {/* <Debug log={campo}></Debug> */}
               <Col md="6" lg="6">
-                {/* <Debug log={myUrl[1]}></Debug> */}
-                <>
-                <p>pageUrl[1]={myUrl[1]}</p>
-                <AccordionReactBootstrap campo={campo} img_array={campo} pageUrl={myUrl[1]} img_seq={index+1} client:load/>
-                {/* <AccordionReactBootstrap campo={campo}  url={myUrl[1]} img_seq={index+1} client:load/> */}
-                </>
+              {/* <Debug log={Astro.props.campo?.Immagini?.data} /> */}
+                <AccordionReactBootstrap nome_campo={campo?.Nome_campo} pageUrl={myUrl[1]} img_seq={index+1} img_array={campo?.Immagini?.data} client:load/>
+                <p></p>
               </Col>
               </>
             ))}  
