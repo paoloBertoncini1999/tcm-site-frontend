@@ -10,7 +10,8 @@ export default function ModalTcm(props) {
   const handleShow = () => setShow(true);
 
 
-  console.log("✅ props img modalTcm:", JSON.stringify(props?.img_array, null, 2));
+  console.log("✅ props page_url modalTcm:", JSON.stringify(props?.img_url, null, 2));
+  console.log("✅ props img_seq modalTcm:", JSON.stringify(props?.img_seq, null, 2));
 
 
 
@@ -19,7 +20,6 @@ export default function ModalTcm(props) {
     <div class="modalTcm">
       <Button variant="primary" onClick={handleShow}>
          <img class="img-fluid img-thumbnail" height={200} style={{ maxHeight: '200px' }} src={`http://127.0.0.1:1337${props.img_url}`} alt="immagine di prova"/>
-        {/* {props.img_url} */}
       </Button>
 
       <Modal show={show} onHide={handleClose } size="lg">
@@ -28,9 +28,14 @@ export default function ModalTcm(props) {
         </Modal.Header>
         <Modal.Body>
           <div className='d-flex justify-content-center'>
-            {props.img_array?.length===1?
-<img class="img-fluid img-thumbnail" height={800} style={{ maxHeight: '800px' }} src={`http://127.0.0.1:1337${props?.img_array[0]?.attributes?.url}`} alt="immagine di prova"/> 
-            :<Carosello2 pageUrl={props.pageUrl} img_seq={props.img_seq} img_array={props.img_array} client:load></Carosello2>
+            <p>{props.img_array?.length}</p>
+            {props.img_array?.length==1?
+            <>
+            {console.log("✅ props img_array 1 modalTcm:", JSON.stringify(props?.img_array[0]?.Immagine?.data, null, 2))}
+            <img class="img-fluid img-thumbnail" height={800} style={{ maxHeight: '800px' }} src={`http://127.0.0.1:1337${props?.img_array[0]?.Immagine?.data?.attributes?.url}`} alt="immagine di prova"/> 
+            </>
+            :<Carosello2 pageUrl={props.pageUrl} img_seq={props?.img_seq} img_array={props.img_array} client:load></Carosello2>
+            
             }
             
           </div>

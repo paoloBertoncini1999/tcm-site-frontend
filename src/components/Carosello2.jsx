@@ -4,8 +4,9 @@ import Carousel from 'react-bootstrap/Carousel';
 
 
 export default function Carosello2(props) {
-console.log("✅ props carosello2: ", JSON.stringify(props, null, 2));
-// console.log("✅ props img_array carosello2: ", JSON.stringify(props.img_array, null, 2));
+  console.log("✅ props carosello2: ", JSON.stringify(props, null, 2));
+  console.log("✅ props sequenza carosello2: ", JSON.stringify(props?.img_seq, null, 2));
+  // console.log("✅ props img_array carosello2: ", JSON.stringify(props.img_array, null, 2));
 
 // const [index, setIndex] = useState(props?.img_seq!=undefined ? props?.img_seq:"");
 const [index, setIndex] = useState((props?.img_seq ?? 1)-1);
@@ -34,7 +35,10 @@ return (
                {props?.pageUrl == "photogallery" ?
                <img class="img-fluid img-thumbnail" height={800} style={{ maxHeight: '800px' }} src={`http://127.0.0.1:1337${img?.Immagine?.data?.attributes?.url}`} alt="immagine di prova"/> 
                :props?.pageUrl == "campi" ?
-               <img class="img-fluid img-thumbnail" height={800} style={{ maxHeight: '800px' }} src={`http://127.0.0.1:1337${img?.attributes?.url}`} alt="immagine di prova"/> 
+               <>
+               {/* <p>{props?.img_array}</p> */}
+               <img class="img-fluid img-thumbnail" height={800} style={{ maxHeight: '800px' }} src={`http://127.0.0.1:1337${img?.Immagine?.data?.attributes?.url}`} alt="immagine di prova"/> 
+              </>
                :props?.pageUrl == "home" ?
                <img class="img-fluid img-thumbnail" height={800} style={{ maxHeight: '800px' }} src={img} alt="immagine di prova"/> 
                :""}

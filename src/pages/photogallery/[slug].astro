@@ -1,4 +1,5 @@
 ---
+import { Debug } from "astro/components";
 import { Col, Row } from "react-bootstrap";
 import Layout from "src/layouts/Layout.astro";
 import fetchApi from "src/lib/strapi";
@@ -38,12 +39,12 @@ export async function getStaticPaths() {
 // const myUrl = Astro.url.pathname.at(2);
 const myUrl = Astro.url.pathname.split("/").filter(Boolean);
 ---
-<!-- <Debug log={myUrl}></Debug> -->
 <Layout title="Welcome to Astro.">
   <div class="page-photogallery-details">
     <h2> {titolo}</h2>
     <Row className="g-4">
-      {img_photogallery.map((img) => (
+      <Debug log={img_photogallery}></Debug>
+      {img_photogallery?.map((img) => (
         <Col lg="4">
           <ModalTcm titolo_modale={titolo} pageUrl={myUrl[0]} img_url={img?.Immagine?.data?.attributes?.url} img_seq={img?.Sequenza} img_array={img_photogallery} client:load></ModalTcm>
         </Col>

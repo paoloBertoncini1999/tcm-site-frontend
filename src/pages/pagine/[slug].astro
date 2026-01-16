@@ -8,11 +8,16 @@ import Campi from "../campi.astro";
 import { Col, Row } from "react-bootstrap";
 import AccordionReactBootstrap from "@components/AccordionReactBootstrap.jsx";
 import { log } from "node_modules/astro/dist/core/logger/core";
-
+interface Pagina{
+  attributes:{
+    Titolo:string
+  }
+}
 export async function getStaticPaths() {
   // 1️⃣ Recupera la lista di pagine disponibili
-  const response = await fetchApi({
-    endpoint: 'paginas?filters[Visibile][Visibile][$eq]=Si&populate[Documenti][populate]=*&populate[Immagine_apertura_e_anteprima][populate]=*&populate[Campi][populate]=*',
+  const response = await fetchApi<Pagina[]>({
+    endpoint: 'paginas?filters[Visibile][Visibile][$eq]=Si&populate[Documenti][populate]=*&populate[Immagine_apertura_e_anteprima][populate]=*&populate[Campi][populate][Img_campo][populate]=*',
+    // endpoint: 'paginas?filters[Visibile][Visibile][$eq]=Si&populate[Documenti][populate]=*&populate[Immagine_apertura_e_anteprima][populate]=*&populate[Campi][populate]=*',
     wrappedByKey: 'data', // the key to unwrap the response
   });
 
@@ -26,12 +31,13 @@ export async function getStaticPaths() {
         visibile: pagina?.attributes?.Visibile,
         immagine_apertura_e_anteprima: pagina?.attributes?.Immagine_apertura_e_anteprima,
         campi: pagina?.attributes?.Campi,
+        img_campo: pagina?.attributes?.Campi[1]?.img_campo,
       },
     })) || [];
 
   console.log("Paths prova:", paths);
   return paths}
-  const {titolo, sequenza, corpo_della_pagina, documenti, visibile, immagine_apertura_e_anteprima, campi} = Astro.props; // Ottieni lo slug dalla URL
+  const {titolo, sequenza, corpo_della_pagina, documenti, visibile, immagine_apertura_e_anteprima, campi, img_campo} = Astro.props; // Ottieni lo slug dalla URL
 
 const myUrl = Astro.url.pathname.split("/").filter(Boolean);
 ---
@@ -46,6 +52,7 @@ const myUrl = Astro.url.pathname.split("/").filter(Boolean);
 <!-- <Debug log={corpo_della_pagina}/> -->
 <!-- <Debug log={immagine_apertura_e_anteprima}/>  -->
 <!-- <Debug log={campi}/>  -->
+<!-- <Debug log={img_campo}/>  -->
 <!-- <Debug log="pagine slug"/>  -->
 
 
@@ -78,9 +85,10 @@ const myUrl = Astro.url.pathname.split("/").filter(Boolean);
             {campi?.map((campo, index) => (
               <>
               <Col md="6" lg="6">
-              {/* <Debug log={Astro.props.campo?.Immagini?.data} /> */}
-                <AccordionReactBootstrap nome_campo={campo?.Nome_campo} pageUrl={myUrl[1]} img_seq={index+1} img_array={campo?.Immagini?.data} client:load/>
-                <p></p>
+
+                {/* <Debug log={img} />  */}
+              <AccordionReactBootstrap nome_campo={campo?.Nome_campo} pageUrl={myUrl[1]} img_url={campo?.Img_campo[0]?.Immagine?.data?.attributes?.url} img_seq={1} img_array={campo?.Img_campo} client:load/>
+              {/* <AccordionReactBootstrap nome_campo={campo?.Nome_campo} pageUrl={myUrl[1]} img_url={campo?.Img_campo[0]?.Immagine?.data?.attributes?.url} img_seq={1} img_array={campo?.Img_campo} client:load/> */}
               </Col>
               </>
             ))}  
